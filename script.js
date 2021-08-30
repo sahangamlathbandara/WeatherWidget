@@ -165,7 +165,7 @@ function autocomplete(inp, arr) {
     if (currentFocus >= x.length) currentFocus = 0;
     if (currentFocus < 0) currentFocus = (x.length - 1);
     /*add class "autocomplete-active":*/
-    console.log(currentFocus);
+    //console.log(currentFocus);
 
 
     // document.getElementsByClassName("div-list").onmouseleave = function(e) { 
