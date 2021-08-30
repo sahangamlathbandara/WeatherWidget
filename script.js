@@ -259,10 +259,6 @@ async function searchText() {
 //const x = Object.entries(test);
 //let result = test.map(a => a.name);
 searchText();
-let result = test.map(obj => `${obj.name} (${obj.capital})`);
-let uniqueChars = [...new Set(result)];
-
-
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 //autocomplete(document.getElementById("myInput"), searchText());
