@@ -2,7 +2,8 @@ body {
     display: flex;
     /* justify-content: center; */
     align-items: center;
-    height: 100vh;
+    flex-wrap: wrap;
+
     margin: 0;
     /* font-family: 'Open Sans', sans-serif; */
     font-family: 'Montserrat', sans-serif;
@@ -10,7 +11,16 @@ body {
     background: #324;
     background-image: url("https://source.unsplash.com/1600x900/?nature,landscape");
     background-position:100%;
+    background: fixed;
     flex-direction: column;
+     /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* width: max-content; */
 
 }
 .aaaaaa {
@@ -36,7 +46,7 @@ h2 {
     color: white;
     padding: 1.4em;
     border-radius: 30px;
-    width: 100%;
+    /* width: 100%; */
     max-width: max-content;
     margin: 0.5em;
 
@@ -95,7 +105,7 @@ h1.temp {
     font-weight: bold;
     margin: 0 10px 0 0;
     margin-bottom: 0.1em;
-    font-size: 255%;
+    font-size: 240%;
     background: #555555b0;
     padding: 11px;
 }
@@ -106,15 +116,21 @@ h1.temp {
 .description {
     text-transform: capitalize;
     margin-left: 8px;
+    font-size: 110%;
+
 }
+
+
+
 .weather.loading {
+    margin-left: 12px;
     visibility: hidden;
     max-height: 20px;
     position: relative;
 }
 .weather.loading::after{
     visibility: visible;
-    content: "Loading.....";
+    /* content: "Loading....."; */
     color: white;
     position: absolute;
     top: 10px;
@@ -126,6 +142,7 @@ h1.temp {
 h1.city {
     margin-bottom: 8px;
     margin-right: 6px;
+    width: max-content;
 }
 
 .precipitation {
@@ -203,7 +220,7 @@ a {
 }
   
   .autocomplete-items {
-    width: calc(100% - 70px);
+    width: calc(100% - 65px);
     background-color: rgba(0, 0, 0, 0.521);
     backdrop-filter: blur(5px);
     box-shadow: 0 0 5px 10px rgba(0, 0, 0, 0.521);;
@@ -240,6 +257,10 @@ a {
   .autocomplete-items div {
     padding: 6px;
     cursor: pointer;
+    margin-right: 5px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0) 98%, white);
+
+
   }
   
   /*when hovering an item:*/
@@ -307,6 +328,7 @@ a {
     cursor: pointer;
 }
 p.date-stamp {
+    width: auto;
     padding: 0 10px 0;
     margin-top: 5px;
     bottom: 0px;
@@ -333,24 +355,64 @@ img.icon {
 span.city-span {
     margin-left: 8px;
     padding: 2px;
+    width: -webkit-fill-available;
+    margin-right: 10px;
+}
+.wind_rotation {
+    margin: 5px;
+    /* padding: 0px; */
+    font-size: 16px
+}
+
+.feelslike {
+    font-size: 130%;
+}
+.material-icons {
+    cursor: default;
+
 }
 
 
+.dots-cont {
+    visibility: visible;
+    right: 0px;
+    bottom: 0px;
+    max-height: 1px;
+ }
 
 
+ .dot {
+    width: 12px;
+    height: 12px;
+    background: #ffffff;
+    display: inline-block;
+    border-radius: 50%;
+    right: 0px;
+    bottom: 0px;
+    margin: 0px 2.5px;
+    position: relative;
+    animation: jump 1s infinite;
+ }
+ 
+ .dots-cont .dot-1 {
+    -webkit-animation-delay: 100ms;
+    animation-delay: 100ms;
+ }
+ .dots-cont .dot-2 {
+    -webkit-animation-delay: 200ms;
+    animation-delay: 200ms;
+ }
+ .dots-cont .dot-3 {
+    -webkit-animation-delay: 300ms;
+    animation-delay: 300ms;
+ }
+ @keyframes jump {
+    0%   {bottom: 0px;}
+    20%  {bottom: 5px;}
+    40%  {bottom: 0px;}
+ }
+ .country {
+    padding-right: 25px;
+}
 
 
-/*
-.country[title]:hover::after {
-    content: attr(title);
-    position: absolute;
-    margin-inline-start: 10%;
-    padding: 5px;
-    text-align: start;
-    border-radius: 10px;
-    height: auto;
-    width: max-content;
-    background: #324;
-  }
-*/
-  
