@@ -25,13 +25,14 @@
   <div class="card">
     <div onclick="location.href='http://www.openweathermap.com';">
       <h2 class="heading" style="cursor:pointer;">Open Weather</h2>
+
     </div>
 
     <!--Make sure the form has the autocomplete function switched off:-->
     <form autocomplete="off">
       <div class="autocomplete">
 
-        <input id="myInput" class="form-control form-control-lg" type="text" name="myCountry" placeholder="Search city">
+        <input id="myInput" class="form-control form-control-lg" type="text" placeholder="Search city">
         <button type="button"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16"
             height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"
@@ -48,6 +49,18 @@
       </div>
 
     </form>
+
+    <span class="dots-cont"> 
+
+      <span class="dot dot-1"></span> 
+      <span class="dot dot-2"></span> 
+      <span class="dot dot-3"></span> 
+
+    </span>  
+
+
+
+
     <div class="weather loading">
       <div class="flex">
         <div class="location-icon">
@@ -55,16 +68,24 @@
         <h1 class="city">Kegalle</h1>
         <div class="country" id="country" title="">SL</div>
 
+
       </div>
       <div class="aaaaaa">
+
+        <div>
+
         <h1 class="temp">51°</h1>
+
+
+      </div>
+
         <div class="feelslike">feels like 51°</div>
       </div>
       <div class="flex">
         <img src="http://openweathermap.org/img/wn/04d@2x.png" alt="" class="icon">
         <div class="description">Cloudy</div>
       </div>
-      <div id="pre" class="precipitation ">Chance of rain : 70%</div>
+      <div id="pre" class="precipitation">Chance of rain : 70%</div>
       <div class="flex">
         <span class="material-icons">
           water_drop
@@ -74,15 +95,17 @@
       <div class="flex">
         <span class="material-icons">air </span>
         <div class="wind">Wind : 6.2 km/h</div>
+        <span class="wind_rotation material-icons">north</span>
       </div>
       <div class="moreinfo" id="moreinfo">More Info
         <a href=""></a>
-        <div class="triangle"></div>
+        <span class="material-icons">keyboard_double_arrow_right</span>
+        <!-- <div class="triangle"></div> -->
 
       </div>
       <div class="temp-convert">
-        <a id="celsius" title="Celsius">°C</a> |
-        <a id="fahrenheit" title="Fahrenheit">°F</a>
+        <a id="celsius" title="Metric: °C, km/h">°C</a> |
+        <a id="fahrenheit" title="Imperial: °F, mph">°F</a>
       </div>
 
     </div>
