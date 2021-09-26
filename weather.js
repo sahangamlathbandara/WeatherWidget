@@ -13,7 +13,8 @@ let weather = {
             .then((response) => response.json())
             .then((data) => {
             
-            fetch("https://restcountries.eu/rest/v2/alpha/" + data.sys.country)
+            //fetch("https://restcountries.eu/rest/v2/alpha/" + data.sys.country)
+            fetch("https://api.worldbank.org/v2/country/" +data.sys.country+ "?format=json")
                 .then((res) => res.json())
                 .then((dat) => this.displayWeather(data, dat));
             
