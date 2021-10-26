@@ -45,8 +45,8 @@ let weather = {
         //console.log(name,icon,description,temp,humidity,speed);
         document.querySelector(".city").innerText = name;
         document.querySelector(".country").innerText = country;
-        document.getElementById("country").title = dat.name;
-        console.log("Country name is : "+ dat[0][1].name);
+        document.getElementById("country").title = dat[1][0].name;
+        console.log("Country name is : "+ dat[1][0].name);
         //console.log(id);
 
 
