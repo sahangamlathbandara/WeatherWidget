@@ -49,6 +49,8 @@ h2 {
     /* width: 100%; */
     max-width: max-content;
     margin: 0.5em;
+    transition: 0.2s ease-in-out;
+
 
 }
 
@@ -106,7 +108,7 @@ h1.temp {
     margin: 0 10px 0 0;
     margin-bottom: 0.1em;
     font-size: 240%;
-    background: #555555b0;
+    background: #cdc9c969;
     padding: 11px;
 }
 .flex{
@@ -142,7 +144,10 @@ h1.temp {
 h1.city {
     margin-bottom: 8px;
     margin-right: 6px;
-    width: max-content;
+    /* width: max-content; */
+    width: auto;
+    word-break: break-word;
+
 }
 
 .precipitation {
@@ -195,7 +200,8 @@ a {
   }
   
   input[type=text] {
-    border: none;
+    border: solid;
+    border-color: #c2bfc1;
     background-color: #ffffffc2;
     width: calc(100% - 70px);
     border-radius: 20px;
@@ -220,6 +226,7 @@ a {
 }
   
   .autocomplete-items {
+      color: #ffffff;
     width: calc(100% - 65px);
     background-color: rgba(0, 0, 0, 0.521);
     backdrop-filter: blur(5px);
@@ -343,6 +350,9 @@ img.icon {
     /* background: #adafaeb8;
     border-radius: 50%; */
     filter: drop-shadow(0px 0px 20px #fff);
+    block-size: 100px;
+    
+    
 
 }
 
@@ -358,11 +368,27 @@ span.city-span {
     width: -webkit-fill-available;
     margin-right: 10px;
 }
+/* @-webkit-keyframes arrow {
+    
+    0% { -webkit-transform: translateY(0); opacity: 0.4 }
+
+    100% { -webkit-transform: translateY(-0.4em); opacity: 0.9 }
+  } */
+
 .wind_rotation {
-    margin: 5px;
+    margin: 4px 11px 5px 11px;
     /* padding: 0px; */
-    font-size: 16px
+    font-size: 16px;
+    /* animation: arrow 0.6s infinite alternate ease-in-out; */
+    
+
+    
+  
 }
+
+
+
+
 
 .feelslike {
     font-size: 130%;
@@ -415,4 +441,41 @@ span.city-span {
     padding-right: 25px;
 }
 
+.theme {
+    display: flex;
+    justify-content: space-between;
+}
 
+/* .glow {
+    text-align: center;
+    animation: glow 1s ease-in-out infinite alternate;
+  }
+  
+  @-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+    
+    to {
+      text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    }
+  } */
+
+
+
+
+
+/*
+.country[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    margin-inline-start: 10%;
+    padding: 5px;
+    text-align: start;
+    border-radius: 10px;
+    height: auto;
+    width: max-content;
+    background: #324;
+  }
+*/
+  
