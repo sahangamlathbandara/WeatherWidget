@@ -1,6 +1,7 @@
 var temp;
 var feelslike;
 var wind_speed;
+var input  = document.getElementById("myInput").value.trim();
 let weather = {
     
     fetchWeather: function (city) {
@@ -11,21 +12,50 @@ let weather = {
 
         )
             .then((response) => response.json())
-            .then((data) => {
+            .then((data) => { this.displayWeather(data, data.name)
             
-            //fetch("https://restcountries.eu/rest/v2/alpha/" + data.sys.country)
-            fetch("https://api.worldbank.org/v2/country/" +data.sys.country+ "?format=json")
-                .then((res) => res.json())
-                .then((dat) => this.displayWeather(data, dat));
+            })
+            .catch(() => {
+              //console.log("SSSSSSSSSSSSSSSS");
+
+              fetch('https://nominatim.openstreetmap.org/search?q='
+
+              +window.location.search.slice(1)+
+              
+              '&format=geojson')
+
+                .then((respo) => respo.json())
+                .then((dal) => {
+
+                    //console.log(dal.features[0].geometry.coordinates[1]);
+                    fetch(
+                        "https://api.openweathermap.org/data/2.5/weather?lat="
+                        +dal.features[0].geometry.coordinates[1]+
+                        "&lon="
+                        +dal.features[0].geometry.coordinates[0]+
+                        "&units=metric&appid=b190a0605344cc4f3af08d0dd473dd25"
             
-            
-            }
-            
-            );
+                    )
+                        .then((resp) => resp.json())
+                        .then((da) => this.displayWeather(
+                            da, 
+                            dal.features[0].properties.display_name.split(',')[0]));
+
+
+                }
+                
+                
+                
+                    );
+
+
+
+
+            });
 
 
     },
-    displayWeather: function (data ,dat) {
+    displayWeather: function (data, test) {
 
 
         const { name, id, dt } = data;
@@ -42,11 +72,13 @@ let weather = {
 
 
 
+
         //console.log(name,icon,description,temp,humidity,speed);
-        document.querySelector(".city").innerText = name;
+        document.querySelector(".city").innerText = test;
+        //document.querySelector(".city").innerText = window.location.search.slice(1).split(',')[0];
         document.querySelector(".country").innerText = country;
-        document.getElementById("country").title = dat[1][0].name;
-        console.log("Country name is : "+ dat[1][0].name);
+        //document.getElementById("country").title = dat[1][0].name;
+        //console.log("Country name is : "+ dat[1][0].name);
         //console.log(id);
 
 
@@ -68,9 +100,24 @@ let weather = {
 
 
         
-        document.querySelector(".icon").src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+        //document.querySelector(".icon").src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+
+
+        // Icons from https://basmilius.github.io/weather-icons/index-fill.html
+        document.querySelector(".icon").src = "./data/icons/" + icon + ".svg";
+
         document.querySelector(".description").innerText = description;
-        this.unitConverter(true);
+        //this.unitConverter(true);
+
+        if (localStorage.getItem("metric") !== null){
+            this.unitConverter(localStorage.metric);
+
+        }else this.unitConverter("true");
+
+
+        console.log("SSSSSSSS "+localStorage.metric);
+        console.log(typeof(localStorage.metric));
+
         document.querySelector(".humidity").innerText = "Humidity : " + humidity + "%";
         //console.log(wind_speed);
         //console.log(speed*3.6);
@@ -84,7 +131,19 @@ let weather = {
 
         document.querySelector(".date-stamp").innerText = "Weather Data Collected at " +date;
 
-        document.querySelector(".wind_rotation").style.transform = `rotate(${deg-180}deg)`
+
+        if (deg != 0){
+            document.querySelector(".wind_rotation").style.transform = `rotate(${deg-180}deg)` 
+            document.querySelector(".wind_rotation").title = deg-180 + "°";
+        }
+        else {
+            document.querySelector(".wind_rotation").style.display = "none";
+
+        }
+        
+
+        //document.querySelector(".wind_rotation").style.animation = 'arrow 0.6s infinite alternate ease-in-out;';
+
         //console.log(d);
 
 
@@ -93,7 +152,7 @@ let weather = {
 
         //let  url = "https://openweathermap.org/city/" + id;
 
-        
+
 
 
         // function moreinfo(id){
@@ -194,7 +253,11 @@ let weather = {
     },
 
     unitConverter:function(isMetric){
-        if(isMetric){
+        //isMetric is used as a String, because the localstorage.metric value cant't be a boolean.
+        if(isMetric == "true"){
+
+            //console.log(typeof(isMetric));
+
 
             document.querySelector(".temp").innerText = Math.round(temp) + "°";
             document.querySelector(".feelslike").innerText = "Feels Like " +Math.round(feelslike)+ "°";
@@ -208,7 +271,8 @@ let weather = {
 
 
         }
-        else{
+        //isMetric is used as a String, because the localstorage.metric value cant't be a boolean.
+        if(isMetric == "false"){
             var tem = (temp*(1.8)) + 32;
             var feels = (feelslike*(1.8)) + 32;
             document.querySelector(".temp").innerText = Math.round(tem) + "°";
@@ -229,7 +293,6 @@ let weather = {
     },
     
 
-
 };
 
 
@@ -239,6 +302,7 @@ document
     .addEventListener("keyup", function (event) {
         if (event.key == "Enter") {
             weather.search();
+            console.log(document.getElementById("myInput").value)
         }
     });
 
@@ -246,22 +310,130 @@ document
     .querySelector("button")
     .addEventListener("click", function () {
         weather.search();
+        console.log(document.getElementById("myInput").value)
+
     });
 
 document.getElementById("celsius")
     .addEventListener("click", function (){
-    weather.unitConverter(true);
+    weather.unitConverter("true");
+
+    //localStorage.setItem("metric", "true");
+    localStorage.metric = "true";
+    console.log(localStorage.metric);
+
 
 });
 document.getElementById("fahrenheit").addEventListener("click", function(){
-    weather.unitConverter(false);
+
+    localStorage.metric = "false";
+    weather.unitConverter("false");
+
+    //localStorage.setItem("metric", "false");
+    
+    console.log(localStorage.metric);
+
+
 
 });
 
 
+console.log(localStorage.metric);
+console.log(typeof(localStorage.metric));
 
 
-   
+if (localStorage.getItem("darkMode") == null){
+    document.getElementById("light_mode").style.display = "none";
+    darkMode();
+
+    //localStorage.setItem("darkMode", "true");
+
+    localStorage.darkMode ="true";
+    console.log(localStorage.darkMode);
+    //console.log(typeof(localStorage.darkMode));
+}
+
+if (localStorage.darkMode == "false"){
+    document.getElementById("light_mode").style.display = "block";
+    lightMode();
+
+    //localStorage.setItem("darkMode", "false");
+    localStorage.darkMode ="false";
+    //console.log(localStorage.darkMode);
+}
+if (localStorage.darkMode =="true"){
+    document.getElementById("light_mode").style.display = "none";
+    darkMode();
+
+    //localStorage.setItem("darkMode", "true");
+
+    localStorage.darkMode ="true";
+    console.log(localStorage.darkMode);
+    //console.log(typeof(localStorage.darkMode));
+}
+
+
+
+//document.getElementById("light_mode").style.display = "none";
+
+
+document.getElementById("light_mode").addEventListener("click", function () {
+    darkMode();
+    localStorage.darkMode ="true";
+
+});
+
+document.getElementById("dark_mode").addEventListener("click", function () {
+    lightMode();
+    localStorage.darkMode ="false";
+
+});
+
+
+function darkMode() {
+    //document.getElementById("light_mode").addEventListener("click", function () {
+
+
+        document.getElementById("bodyId").style.color = "white";
+        document.getElementById("bodyId").style.backgroundColor = "#000000b5";
+        document.getElementById("light_mode").style.display = "none";
+        document.getElementById("dark_mode").style.display = "block";
+        document.getElementById("icon").style.setProperty("filter", "drop-shadow(0px 0px 20px #fff)");
+        document.getElementById("icon3").style.setProperty("filter", "drop-shadow(0px 0px 20px #fff)");
+
+
+        
+
+
+   // });
+}
+
+function lightMode() {
+    //document.getElementById("dark_mode").addEventListener("click", function () {
+        //if (localStorage.darkMode=="true"){
+
+
+
+        document.getElementById("bodyId").style.color = "black";
+        document.getElementById("bodyId").style.backgroundColor = "#ffffffe8";
+        document.getElementById("dark_mode").style.display = "none";
+        document.getElementById("light_mode").style.display = "block";
+        document.getElementById("icon").style.setProperty("filter", "drop-shadow(0px 0px 20px #00000061)");
+        document.getElementById("icon3").style.setProperty("filter", "drop-shadow(0px 0px 20px #00000061)");
+
+       
+
+
+   // });
+}
+
+
+
+
+
+
+
+
 
 
 //function newFunction(id) {
