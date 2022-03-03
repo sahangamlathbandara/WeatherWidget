@@ -3,6 +3,7 @@ Simple Weather Widget using Openweathermap API
 
 MIT License
 
+ICONS USED
 Copyright (c) 2020-2022 Bas Milius
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
