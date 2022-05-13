@@ -85,8 +85,7 @@ let weather = {
         }else this.unitConverter("true");
 
 
-        console.log("SSSSSSSS "+localStorage.metric);
-        console.log(typeof(localStorage.metric));
+       
 
         document.querySelector(".humidity").innerText = "Humidity : " + humidity + "%";
        
@@ -136,10 +135,6 @@ let weather = {
             checkIfSimiler = cityName;
         }else checkIfSimiler = cityName+ ","+countryCode;
         
-
-        console.log(cityName);
-        console.log(countryCode);
-        console.log(checkIfSimiler);
    
         this.fetchWeather(checkIfSimiler);
         document.getElementById("myInput").blur();
@@ -155,9 +150,7 @@ let weather = {
             document.querySelector(".temp").innerText = Math.round(temp) + "°";
             document.querySelector(".feelslike").innerText = "Feels Like " +Math.round(feelslike)+ "°";
             document.querySelector(".wind").innerText = "Wind : " + (wind_speed*3.6).toFixed(2) + " km/h";
-            console.log(temp);
-            console.log(feelslike);
-            console.log((wind_speed*3.6).toFixed(2));
+         
             document.getElementById("celsius").style.fontWeight = "950";
             document.getElementById("fahrenheit").style.fontWeight = null;
         
@@ -170,9 +163,7 @@ let weather = {
             document.querySelector(".temp").innerText = Math.round(tem) + "°";
             document.querySelector(".feelslike").innerText = "Feels Like " +Math.round(feels)+ "°";
             document.querySelector(".wind").innerText = "Wind : " + ((wind_speed*3.6)/1.609).toFixed(2) + " mph";
-            console.log(tem);
-            console.log(feels);
-            console.log(((wind_speed*3.6)/1.609).toFixed(2));
+       
             document.getElementById("fahrenheit").style.fontWeight = "950";
             document.getElementById("celsius").style.fontWeight = null;
         
@@ -191,7 +182,7 @@ document
     .addEventListener("keyup", function (event) {
         if (event.key == "Enter") {
             weather.search();
-            console.log(document.getElementById("myInput").value)
+           
         }
     });
 
@@ -199,7 +190,7 @@ document
     .querySelector("button")
     .addEventListener("click", function () {
         weather.search();
-        console.log(document.getElementById("myInput").value)
+       
 
     });
 
@@ -209,7 +200,7 @@ document.getElementById("celsius")
 
     //localStorage.setItem("metric", "true");
     localStorage.metric = "true";
-    console.log(localStorage.metric);
+    
 
 
 });
@@ -218,14 +209,13 @@ document.getElementById("fahrenheit").addEventListener("click", function(){
     localStorage.metric = "false";
     weather.unitConverter("false");
     
-    console.log(localStorage.metric);
+   
 
 
 });
 
 
-console.log(localStorage.metric);
-console.log(typeof(localStorage.metric));
+
 
 
 if (localStorage.getItem("darkMode") == null){
@@ -234,7 +224,7 @@ if (localStorage.getItem("darkMode") == null){
 
 
     localStorage.darkMode ="true";
-    console.log(localStorage.darkMode);
+    
 
 }
 
@@ -250,7 +240,7 @@ if (localStorage.darkMode =="true"){
     darkMode();
 
     localStorage.darkMode ="true";
-    console.log(localStorage.darkMode);
+
   
 }
 
@@ -299,7 +289,7 @@ async function ipCheck() {
     if (window.location.search == "") {
 
         weather.fetchWeather(datas.city.replace(/ \([\s\S]*?\)/g, ''));
-        console.log(window.location.search);
+        
     }
     else {
 
