@@ -1,6 +1,14 @@
 # WeatherWidget
 Simple Weather Widget using Openweathermap API
 
+![Screenshot (293)](https://user-images.githubusercontent.com/70343302/168234466-65496d64-418d-4cb2-8374-215baa325d4d.png)
+
+Dark Mode
+
+![Screenshot (292)](https://user-images.githubusercontent.com/70343302/168234512-b9677456-167b-4c83-9377-2ca9f3328966.png)
+
+Light Mode
+
 MIT License
 
 ICONS USED
