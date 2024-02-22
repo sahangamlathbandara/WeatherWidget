@@ -1,5 +1,6 @@
 # WeatherWidget
-Simple Weather Widget using Openweathermap API
+Simple Weather Widget using Openweathermap API 
+https://sahangamlathbandara.github.io/WeatherWidget
 
 ![Screenshot (293)](https://user-images.githubusercontent.com/70343302/168234466-65496d64-418d-4cb2-8374-215baa325d4d.png)
 
